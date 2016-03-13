@@ -10,7 +10,7 @@ a list of checkpoints for the stage.
 
 
 ## Topology
-![](https://github.com/jonnepaa/wireless_project/blob/master/topology.svg)
+![](https://raw.githubusercontent.com/jonnepaa/wireless_project/master/topology.svg)
 
 
 ## Stage 1
