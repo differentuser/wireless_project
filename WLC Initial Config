@@ -1,0 +1,29 @@
+; copy from 1st LINE "yes"
+; until the LAST LINE "yes" [SPACE] ";"
+yes
+
+cisco
+Cisco123
+Cisco123
+172.16.1.100
+255.255.255.0
+172.16.1.1
+0
+1
+172.16.1.1
+1.1.1.1
+Group7
+Group7
+
+
+no
+AU
+
+
+
+
+no
+no
+yes
+
+;
