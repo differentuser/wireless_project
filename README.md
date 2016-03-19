@@ -10,7 +10,7 @@ a list of checkpoints for the stage.
 
 
 ## Topology
-![](http://uploads.jonne.io/topology.svg)
+![](http://uploads.jonne.io/topology_001.svg)
 
 
 ## Stage 1
