@@ -1,0 +1,50 @@
+; !Router HQ_ROUTER Config
+en
+conf t
+!
+hostname HQ_ROUTER
+username LANDownUnder privilege 15 password ithurtswhenIP
+!
+aaa new-model
+aaa authentication login default local
+aaa authentication login CONSOLE none
+aaa authorization exec default local 
+!
+service password-encryption
+enable secret ithurtswhenIP
+no ip domain lookup
+!
+;crypto key zeroize rsa
+;yes
+;ip domain name LANDownUnd.er
+;crypto key generate rsa
+;1024
+!
+banner motd ^*** Router HQ_ROUTER Config ***^
+!
+line con 0
+ exec-timeout 0 0
+ logging synchronous
+ login authentication CONSOLE
+!
+line vty 0 4
+ exec-timeout 0 0
+ logging synchronous
+ transport input telnet ssh
+!
+ntp master
+clock timezone AEDT +10
+clock summer-time AEDT recurring
+do clock set 15:00:00 Mar 24 2016
+!
+int S0/0/0
+ip address 192.16.197.1 255.255.255.252
+no shut
+!
+int G0/0
+ip address 172.16.199.2 255.255.255.0
+no shut
+!
+ip route 172.16.198.0 255.255.255.0 S0/0/0
+ip route 172.16.199.0 255.255.255.0 G0/0
+!
