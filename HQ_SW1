@@ -1,0 +1,213 @@
+Current configuration : 3467 bytes
+!
+! Last configuration change at 03:42:56 UTC Mon Mar 1 1993
+!
+version 15.0
+no service pad
+service timestamps debug datetime msec
+service timestamps log datetime msec
+service password-encryption
+!
+hostname HQ_SW1
+!
+boot-start-marker
+boot-end-marker
+!
+!
+enable secret 5 $1$B66k$007NHYTFx9nHQPFHSKsYo.
+!
+username LANDownUnder privilege 15 password 7 11000D0D02001F1F13222E2A0103
+no aaa new-model
+system mtu routing 1500
+ip routing
+no ip domain-lookup
+!
+ip dhcp excluded-address 172.16.190.0 172.16.190.29
+ip dhcp excluded-address 172.16.191.0 172.16.191.29
+ip dhcp excluded-address 172.16.192.0 172.16.192.29
+ip dhcp excluded-address 172.16.199.0 172.16.199.29
+!
+ip dhcp pool GUEST
+ network 172.16.190.0 255.255.255.0
+!
+ip dhcp pool STAFF
+ network 172.16.191.0 255.255.255.0
+!
+ip dhcp pool STUDENT
+ network 172.16.192.0 255.255.255.0
+!
+ip dhcp pool MANAGEMENT
+ network 172.16.199.0 255.255.255.0
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+spanning-tree mode pvst
+spanning-tree extend system-id
+!
+vlan internal allocation policy ascending
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface FastEthernet0/1
+ switchport access vlan 999
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 190-192,199
+ switchport mode trunk
+!
+interface FastEthernet0/2
+ switchport access vlan 199
+ switchport mode access
+!
+interface FastEthernet0/3
+ switchport access vlan 999
+ shutdown
+!
+interface FastEthernet0/4
+ switchport access vlan 999
+ shutdown
+!
+interface FastEthernet0/5
+ switchport access vlan 999
+ shutdown
+!
+interface FastEthernet0/6
+ switchport access vlan 999
+ shutdown
+!
+interface FastEthernet0/7
+ switchport access vlan 999
+ shutdown
+!
+interface FastEthernet0/8
+ switchport access vlan 999
+ shutdown
+!
+interface FastEthernet0/9
+ switchport access vlan 999
+ shutdown
+!
+interface FastEthernet0/10
+ switchport access vlan 199
+!
+interface FastEthernet0/11
+ switchport access vlan 199
+!
+interface FastEthernet0/12
+ switchport access vlan 199
+!
+interface FastEthernet0/13
+ switchport access vlan 199
+!
+interface FastEthernet0/14
+ switchport access vlan 199
+!
+interface FastEthernet0/15
+ switchport access vlan 999
+ shutdown
+!
+interface FastEthernet0/16
+ switchport access vlan 999
+ shutdown
+!
+interface FastEthernet0/17
+ switchport access vlan 999
+ shutdown
+!
+interface FastEthernet0/18
+ switchport access vlan 999
+ shutdown
+!
+interface FastEthernet0/19
+ switchport access vlan 999
+ shutdown
+!
+interface FastEthernet0/20
+ switchport access vlan 999
+ shutdown
+!
+interface FastEthernet0/21
+ switchport access vlan 999
+ shutdown
+!
+interface FastEthernet0/22
+ switchport access vlan 999
+ shutdown
+!
+interface FastEthernet0/23
+ switchport access vlan 999
+ shutdown
+!
+interface FastEthernet0/24
+ switchport access vlan 999
+ shutdown
+!
+interface GigabitEthernet0/1
+ switchport access vlan 999
+ shutdown
+!
+interface GigabitEthernet0/2
+ switchport access vlan 999
+ shutdown
+!
+interface Vlan1
+ no ip address
+!
+interface Vlan190
+ ip address 172.16.190.1 255.255.255.0
+!
+interface Vlan191
+ ip address 172.16.191.1 255.255.255.0
+!
+interface Vlan192
+ ip address 172.16.192.1 255.255.255.0
+!
+interface Vlan199
+ ip address 172.16.199.1 255.255.255.0
+!
+interface Vlan999
+ no ip address
+!
+ip default-gateway 172.16.199.2
+ip http server
+ip http secure-server
+!
+!
+!
+!
+!
+!
+line con 0
+ exec-timeout 0 0
+ logging synchronous
+ login local
+line vty 0 4
+ exec-timeout 0 0
+ logging synchronous
+ login local
+ transport input ssh
+line vty 5 15
+ exec-timeout 0 0
+ logging synchronous
+ login local
+ transport input ssh
+!
+end
