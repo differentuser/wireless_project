@@ -12,6 +12,17 @@ a list of checkpoints for the stage.
 ## Topology
 ![](http://uploads.jonne.io/topology_001.svg)
 
+## Important things
+---
+#### VLANs
++ `199` HQ Management (for SSH and stuff)
++ `198` BR1
++ `197` HQ AP Management
++ `193` User data in HQ
++ `192` Traffic from `G190-STUDENT`
++ `191` Traffic from `G190-STAFF`
++ `190` Traffic from `G190-GUEST`
+
 
 ## Stage 1
 
@@ -22,6 +33,7 @@ a list of checkpoints for the stage.
 + Interfaces configured
 + Local user `LANDownUnder` with password `ithurtswhenIP`
 + SSHv2 enabled, telnet disabled
++ Domain `landownunder` (for SSH)
 
 ##### All switches in `HQ`
 ---
@@ -45,18 +57,19 @@ a list of checkpoints for the stage.
 ---
 + Static route to `BR1_ROUTER`
 + Acting as NTP server
-+ 
++ OSPF
 
 ##### BR1_ROUTER
 ---
 + Acting as DHCP server for network 172.16.198.0/24 (exluded addresses .1 - .29)
 + Static route to `HQ_ROUTER`
++ OSPF
 
 ##### HQ_WLC01
 ---
-+ SSIDs `GUEST`, `STAFF` and `STUDENT`
-+ `GUEST` traffic on VLAN 190.
-+ `STAFF` traffic on VLAN 191.
-+ `STUDENT` traffic on VLAN 192.
++ SSIDs `G190-GUEST`, `G190-STAFF` and `G190-STUDENT`
++ `G190-GUEST` traffic on VLAN 190.
++ `G190-STAFF` traffic on VLAN 191.
++ `G190-STUDENT` traffic on VLAN 192.
 
 
