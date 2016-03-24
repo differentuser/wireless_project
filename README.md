@@ -14,14 +14,15 @@ a list of checkpoints for the stage.
 
 ## Important things
 ---
-#### VLANs
-+ `199` HQ Management (for SSH and stuff)
-+ `198` BR1
-+ `197` HQ AP Management
-+ `193` User data in HQ
-+ `192` Traffic from `G190-STUDENT`
-+ `191` Traffic from `G190-STAFF`
-+ `190` Traffic from `G190-GUEST`
+#### Networks
++ `172.16.199.0/24` (**VLAN 199**) HQ Management (for SSH and stuff)
++ `172.16.198.0/24` BR1
++ `172.16.197.0/24` (**VLAN 197**) HQ AP Management
++ `172.16.196.0/30` Link between HQ and BR1
++ `172.16.193.0/24` (**VLAN 193**) User data in HQ
++ `172.16.192.0/24` (**VLAN 192**) Traffic from `G190-STUDENT`
++ `172.16.191.0/24` (**VLAN 191**) Traffic from `G190-STAFF`
++ `172.16.190.0/24` (**VLAN 190**) Traffic from `G190-GUEST`
 
 
 ## Stage 1
@@ -37,9 +38,9 @@ a list of checkpoints for the stage.
 
 ##### All switches in `HQ`
 ---
-+ Vlans 190, 191, 192, 199 and 999 added
++ Vlans 190, 191, 192, 193, 197, 199 and 999 added
 + All unused switchports set to blackhole VLAN (999) and shutdown
-+ Only Vlans 190, 191, 192 and 199 allowed on trunks
++ Only Vlans 190, 191, 192, 193, 197 and 199 allowed on trunks
 
 ##### All Access Points
 ---
@@ -51,6 +52,7 @@ a list of checkpoints for the stage.
 + Ports Fa0/10-14 as access ports on vlan 199
 + Static default route to `HQ_ROUTER`
 + Acting as DHCP server for networks 172.16.190.0/24, 172.16.191.0/24, 172.16.192.0/24 and 172.16.199.0/24 (exclude address .1 - .29)
++ OSPF
 
 
 ##### HQ_ROUTER
