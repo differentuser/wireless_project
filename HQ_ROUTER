@@ -16,9 +16,9 @@ no ip domain lookup
 !
 ;crypto key zeroize rsa
 ;yes
-;ip domain name LANDownUnd.er
-;crypto key generate rsa
-;1024
+ip domain name LANDownUnder
+crypto key generate rsa
+1024
 !
 banner motd ^*** Router HQ_ROUTER Config ***^
 !
@@ -30,7 +30,7 @@ line con 0
 line vty 0 4
  exec-timeout 0 0
  logging synchronous
- transport input telnet ssh
+ transport input ssh
 !
 ntp master
 clock timezone AEDT +10
