@@ -2,7 +2,7 @@
 en
 conf t
 !
-hostname HQ_ROUTER
+hostname BR1_ROUTER
 username LANDownUnder privilege 15 password ithurtswhenIP
 !
 aaa new-model
@@ -31,7 +31,7 @@ line con 0
 line vty 0 4
  exec-timeout 0 0
  logging synchronous
- transport input telnet ssh
+ transport input ssh
 !
 !
 ntp server 172.16.199.2
