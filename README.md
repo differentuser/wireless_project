@@ -15,25 +15,48 @@ a list of checkpoints for the stage.
 
 ## Stage 1
 
-+ Basic config on devices
+##### All Devices
+---
++ Basic config
 + Enable secret `ithurtswhenIP`
-+ Local user on each device: user `LANDownUnder` pass `ithurtswhenIP`
-+ Telnet configured on each device (not SSH because we'd have to regenerate
-  keys all the time)
-+ Fa0/10 - 14 on `HQ_SW2` should be access ports on Vlan 199 &mdash; so we can
-  plug PCs in and telnet into devices.
-+ Static routes on `HQ_ROUTER`, `BR1_ROUTER` and `HQ_SW1` so routing works between
-  networks.
-+ `HQ_SW1` acting as DHCP server for VLANS 190, 192, 192 and 199.
-+ `BR1_ROUTER` acting as DHCP server for network 172.16.198.0/24.
-+ Excluded addresses .1 - .29 for each DHCP pool.
-+ `HQ_ROUTER` acting as NTP server.
-+ Unused ports on switches should be ahutdown and set as access ports on VLAN 999
-  which is disallowed on all trunks (ie, Blackhole VLAN).
-+ `HQ_SW1` as VTP server for HQ LAN. VTP domain: `LANDOWNUNDER` vtp pass: `ithurtswhenIP`.
-+ APs should get addresses from DHCP and connect to `HQ_WLC01`.
-+ SSIDS `GUEST`, `STAFF` and `STUDENT` should be broadcast by all APs.
++ Interfaces configured
++ Local user `LANDownUnder` with password `ithurtswhenIP`
++ SSHv2 enabled, telnet disabled
+
+##### All switches in `HQ`
+---
++ Vlans 190, 191, 192, 199 and 999 added
++ All unused switchports set to blackhole VLAN (999) and shutdown
++ Only Vlans 190, 191, 192 and 199 allowed on trunks
+
+##### All Access Points
+---
++ Get addresses via DHCP
++ Discover and join controller via option 43
+
+##### HQ_SW1
+---
++ Ports Fa0/10-14 as access ports on vlan 199
++ Static default route to `HQ_ROUTER`
++ Acting as DHCP server for networks 172.16.190.0/24, 172.16.191.0/24, 172.16.192.0/24 and 172.16.199.0/24 (exclude address .1 - .29)
+
+
+##### HQ_ROUTER
+---
++ Static route to `BR1_ROUTER`
++ Acting as NTP server
++ 
+
+##### BR1_ROUTER
+---
++ Acting as DHCP server for network 172.16.198.0/24 (exluded addresses .1 - .29)
++ Static route to `HQ_ROUTER`
+
+##### HQ_WLC01
+---
++ SSIDs `GUEST`, `STAFF` and `STUDENT`
 + `GUEST` traffic on VLAN 190.
 + `STAFF` traffic on VLAN 191.
 + `STUDENT` traffic on VLAN 192.
-+ Only VLANs 190, 191, 192 and 199 allowed on trunks.
+
+
