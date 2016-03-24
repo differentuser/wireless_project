@@ -47,3 +47,10 @@ no shut
 ip route 172.16.199.0 255.255.255.0 S0/0/0
 ip route 172.16.198.0 255.255.255.0 G0/0
 !
+; DHCP
+ip dhcp excluded-address 172.16.198.1 172.16.198.29
+!
+ip dhcp pool BRANCH1
+ network 172.16.198.0 255.255.255.0
+ default-router 172.16.198.1
+!
